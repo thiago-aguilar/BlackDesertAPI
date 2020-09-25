@@ -16,18 +16,18 @@ dataframe = None
 
 @app.on_event("startup")
 async def startup_event():
-    dataframe = pd.read_csv('/home/thiago/PycharmProjects/Portuguese_Black_Desert_item_finder/project/data/items.csv')
+    dataframe = pd.read_csv('data/items.csv')
 
 
 @app.post('/get_item')
 async def create_item(item: Item):
-    dataframe = pd.read_csv('/home/thiago/PycharmProjects/Portuguese_Black_Desert_item_finder/project/data/items.csv')
+    dataframe = pd.read_csv('data/items.csv')
     return create_item_json(item_id=item.item_id, dataframe=dataframe)[1]
 
 
 @app.get("/items/{item_id}")
 async def read_items(item_id: str):
-    dataframe = pd.read_csv('/home/thiago/PycharmProjects/Portuguese_Black_Desert_item_finder/project/data/items.csv')
+    dataframe = pd.read_csv('data/items.csv')
     item_id = int(item_id)
     item = Item(item_id=item_id)
     return create_item_json(item_id=item.item_id, dataframe=dataframe)[1]
