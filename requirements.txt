@@ -1,0 +1,7 @@
+lxml
+requests
+fastapi
+pydantic
+pandas
+numpy
+uvicorn
