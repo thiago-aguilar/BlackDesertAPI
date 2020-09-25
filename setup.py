@@ -11,7 +11,7 @@ with open('requirements.txt') as f:
 
 setup(
     name="Black_Desert_Item_Finder",
-    version="0.1",
+    version="0.2",
     author="Thiago Borges Aguilar",
     author_email="thiago.aaguilar@gmail.com",
     long_description=long_description,
