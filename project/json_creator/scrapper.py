@@ -1,5 +1,6 @@
 from lxml import html
 import requests
+import time
 
 
 def get_item_name(item_id: str):
@@ -13,7 +14,17 @@ def get_item_name(item_id: str):
 
     """
     url = f'https://bdocodex.com/pt/item/{item_id}/'
-    page = requests.get(url)
+
+    page = ''
+    while page == '':
+        try:
+            page = requests.get(url)
+        except:
+            print("Connection refused by the server..")
+            print("Let me sleep for 5 seconds")
+            print("ZZzzzz...")
+            time.sleep(5)
+            continue
     tree = html.fromstring(page.content)
 
     if len(tree.xpath('//*[@id=\"item_name\"]')) > 0:
