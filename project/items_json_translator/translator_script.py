@@ -12,7 +12,7 @@ def update_json(json_content, idx, list_size):
 def main():
 
     with open('data/items.json') as json_file:
-        data = json.load(json_file)
+        data = json.load(json_file, encoding="utf8")
 
     list_size = len(data)
     output_list = []
