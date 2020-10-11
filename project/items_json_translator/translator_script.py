@@ -5,13 +5,13 @@ from time import sleep
 def update_json(json_content, idx, list_size):
     print(f'Foram traduzidos {idx + 1} itens até agora, restam {list_size - (idx + 1)}')
     print(f'Foi traduzido {round((idx + 1)/list_size * 100, 2)}% dos itens')
-    with open('data/translated_items.json', 'w') as outfile:
-        json.dump(json_content, outfile, ensure_ascii=False)
+    with open('data/translated_items.json', 'w', encoding='utf-8') as outfile:
+        json.dump(json_content, outfile, indent=4, ensure_ascii=False)
 
 
 def main():
 
-    with open('data/items.json') as json_file:
+    with open('data/items.json', 'rb') as json_file:
         data = json.load(json_file, encoding="utf8")
 
     list_size = len(data)
@@ -38,7 +38,7 @@ def main():
             current_item = {
                 'id': id,
                 'grade': grade,
-                'name': str(name)
+                'name': 'nome não mapeado'
             }
             output_list.append(current_item)
             update_json(json_content=output_list, idx=idx, list_size=list_size)
