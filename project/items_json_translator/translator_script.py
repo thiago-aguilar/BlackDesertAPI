@@ -4,7 +4,7 @@ from time import sleep
 
 def update_json(json_content, idx, list_size):
     print(f'Foram traduzidos {idx + 1} itens até agora, restam {list_size - (idx + 1)}')
-    print(f'Foi traduzido {round((idx + 1) / list_size, 2)}% dos itens')
+    print(f'Foi traduzido {round((idx + 1)/list_size * 100, 2)}% dos itens')
     with open('data/translated_items.json', 'w') as outfile:
         json.dump(json_content, outfile, ensure_ascii=False)
 
