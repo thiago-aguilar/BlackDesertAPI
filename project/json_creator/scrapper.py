@@ -16,7 +16,11 @@ def get_item_name(item_id: str):
     page = requests.get(url)
     tree = html.fromstring(page.content)
 
-    item_name = tree.xpath('//*[@id=\"item_name\"]')[0].text_content()
-    item_name = str(item_name)
+    if len(tree.xpath('//*[@id=\"item_name\"]')) > 0:
+        item_name = tree.xpath('//*[@id=\"item_name\"]')[0].text_content()
+        item_name = str(item_name)
 
-    return item_name
+        return item_name
+
+    else:
+        return False
