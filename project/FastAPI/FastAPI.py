@@ -23,7 +23,8 @@ async def startup_event():
 @app.post('/get_item')
 async def create_item(item: Item):
     dataframe = pd.read_csv('data/items.csv')
-    return create_item_json(item_id=item.item_id, dataframe=dataframe)[1]
+    return create_item_json(item_id=item.item_id, dataframe=dataframe, async_flag=True,
+                            item_enhancement=item.item_enhancement)[1]
 
 
 @app.get("/items/{item_id}/{item_enhancement}")
@@ -34,7 +35,8 @@ async def read_items(item_id: str, item_enhancement: str):
     item_id = int(item_id)
     item_enhancement = int(item_enhancement)
     item = Item(item_id=item_id, item_enhancement=item_enhancement)
-    return_tuple = create_item_json(item_id=item.item_id, dataframe=dataframe, item_enhancement=item_enhancement)
+    return_tuple = create_item_json(item_id=item.item_id, dataframe=dataframe, item_enhancement=item_enhancement,
+                                    async_flag=True)
 
     if return_tuple[0]:
         return return_tuple[1]
